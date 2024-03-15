@@ -1,9 +1,9 @@
 import { Inject, Injectable } from '@angular/core';
-import { Database } from '../core/providers/firebase_providers/database_interface_providers';
+import {Database} from "../core/providers/firebase_providers/database_interface_providers";
 import {DATABASE_TOKEN} from "../app/database_tokens";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class DatabaseService {
   private database: Database;
@@ -12,11 +12,17 @@ export class DatabaseService {
     this.database = database;
   }
 
-  add(collection: string, data: any): Promise<any> {
+  add(
+    collection: string,
+    data: {
+      displayName: string;
+      reclamation: string;
+    }
+  ): Promise<string> {
     return this.database.add(collection, data);
   }
 
-  update(collection: string, id: string, data: any): Promise<any> {
+  update(collection: string, id: string, data: never): Promise<void> {
     return this.database.update(collection, id, data);
   }
 
